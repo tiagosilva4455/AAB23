@@ -8,7 +8,14 @@ from MyMotifs import MyMotifs
 
 class MotifFinding:
     
-    def __init__(self, size = 8, seqs = None):
+    def __init__(self, size:int = 8, seqs:list = None)-> None:
+        """
+        Construtor com os atributos necessários para a class MotifFinding
+
+        Args:
+            size: vê o tamanho do motif, em caso de não ser definido recebe o valor 8
+            seqs: lista com as sequências, recebe None se não forem dadas sequências e teremos uma lista vazia
+        """
         self.motifSize = size
         if (seqs != None):
             self.seqs = seqs
@@ -16,22 +23,47 @@ class MotifFinding:
         else:
             self.seqs = []
                     
-    def __len__ (self):
+    def __len__ (self) -> int:
+        """
+        Indica o número de elementos/sequências presentes na lista self.seqs
+        Returns:
+            Devolve o número de elementos da lista
+        """
         return len(self.seqs)
     
-    def __getitem__(self, n):
+    def __getitem__(self, n) -> str:
+        """
+        Interface para a indexação []
+        """
         return self.seqs[n]
     
-    def seqSize (self, i):
+    def seqSize (self, i: int) -> int:
+        """
+        Comprimento da sequência i que está presente na lista self.seqs
+        """
         return len(self.seqs[i])
     
-    def readFile(self, fic, t):
+    def readFile(self, fic:str, t:str) -> None:
+        """
+        Função que lê ("r") um ficheiro, separa por espaços cada sequência (strip), e adiciona cada sequência à lista self.seqs
+        Args:
+            fic : ficheiro a ser lido
+            t : tipo de sequência
+        """
         for s in open(fic, "r"):
             self.seqs.append(MySeq(s.strip().upper(),t))
         self.alphabet = self.seqs[0].alfabeto()
         
         
-    def createMotifFromIndexes(self, indexes):
+    def createMotifFromIndexes(self, indexes:int) -> list:
+        """
+        Crição de uma matriz, a partir da definição da posição onde o motif começará a ser contado e onde termina, identificando o seu tipo (t). 
+        Esta info é adicionada à lista pseqs, que é uma lista de motifs
+        Args:
+            indexes : indica a posição pela qual vamos começar a contar o motif
+        Returns:
+            (?) list
+        """
         pseqs = []
         for i,ind in enumerate(indexes):
             pseqs.append( MySeq(self.seqs[i][ind:(ind+self.motifSize)], self.seqs[i].tipo) )
@@ -40,20 +72,30 @@ class MotifFinding:
         
     # SCORES
         
-    def score(self, s):
+    def score(self, s:int) -> list:
+        """
+        Função que determina os scores nas diferentes colunas
+        Args:
+            s : posições iniciais (?)
+        Returns:
+            lista com os diferentes valores de score de cada coluna
+        """
         score = 0
         motif = self.createMotifFromIndexes(s)
         motif.doCounts()
         mat = motif.counts
-        for j in range(len(mat[0])):
-            maxcol = mat[0][j]
-            for  i in range(1, len(mat)):
-                if mat[i][j] > maxcol: 
+        for j in range(len(mat[0])):   #colunas da matriz
+            maxcol = mat[0][j]          #a cada ronda, define que aquela coluna é maxima e a primeira linha
+            for  i in range(1, len(mat)):   
+                if mat[i][j] > maxcol:   #se houver outra linha da coluna máxima que seja maior que a definida antes, admitimos nova maxcol
                     maxcol = mat[i][j]
-            score += maxcol
-        return score
+            score += maxcol             #adiciona o valor de cada coluna ao score
+        return score                    #lista das várias colunas com valores maiores das linhas = score
    
     def scoreMult(self, s):
+        """
+        Acho que é o mesmo de cima mas com PWM not sure
+        """
         score = 1.0
         motif = self.createMotifFromIndexes(s)
         motif.createPWM()
@@ -84,6 +126,9 @@ class MotifFinding:
         return nextS
         
     def exhaustiveSearch(self):
+        """
+        Calcula o score de cada possível vetor de posições
+        """
         melhorScore = -1
         res = []
         s = [0]* len(self.seqs)

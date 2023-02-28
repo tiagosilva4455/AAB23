@@ -6,6 +6,7 @@
 from MySeq import MySeq
 from MyMotifs import MyMotifs
 
+
 class MotifFinding:
     
     def __init__(self, size:int = 8, seqs:list = None)-> None:
@@ -204,19 +205,48 @@ class MotifFinding:
     # Gibbs sampling 
 
     def gibbs (self):
+        def gibbs (self):
         from random import randint
         #Passo 1:  Escolher posições iniciais de forma aleatória s = (s1 ,...,st ) e formar os segmentos respectivos.
         s = []
         for i in range(0, len(self.seqs)):
-            s.append(randint(0, len(self.seqSize[i]), self.motifSize - 1))
+            x = (randint(0, self.seqSize(i)))
+            s.append(x)
         best_score = self.score(s) #calcula o score com base nas seqs da lista s
+        
+        #vamos criar uma variável "melhoria" que vai ocorrer um determinado número de vezes até esta não ocorrer
 
-        #Passo 2: Escolher de forma aleatoria uma sequencia i
-        i = self.seqs(randint(0, len(self.seqs)))
+        x=0
 
-        #Passo 3: Criar perfil P das outras sequências a partir de s (excluindo a sequência escolhida aleatoriamente)
-        pwm = self.createMotifFromIndexes(s)
-        return None
+        while x<2000:
+            x+=1
+
+            #Passo 2: Escolher de forma aleatoria uma sequencia i
+            randSeq = randint(0, (len(self.seqs)-1))
+
+            #Passo 3: Criar perfil P das outras sequências a partir de s (excluindo a sequência escolhida aleatoriamente)
+            
+            
+            random = self.seqs[randSeq]
+            seqNoRandom = self.seqs.pop(randSeq)  #remove-se a sequência escolhida aleatoriamente anteriormente
+            aux_seq_list = s.copy()  #lista auxiliar com todas as posições
+            aux_seq_list.pop(randSeq)  #remover a posição da sequência escolhida aleatoriamente na lista s com as posições iniciais
+            pwm = self.createMotifFromIndexes(aux_seq_list)#criação do perfil sem a sequência removida
+            pwm.createPWM()
+
+            #Passo 4: Para cada posição p na sequência i, calcular a probabilidade do segmento iniciado em p com tamanho L, ser gerado por P.
+            
+            #Obter a melhor posição
+            s[randSeq] = pwm.mostProbableSeq(seqNoRandom)
+            #Inserir a sequencia aleatoria 
+            self.seqs.insert(randSeq,seqNoRandom) 
+            #Calcula o novo score 
+            new_score = self.score(s)
+            print(new_score)
+            #Verifica se houve melhoria     
+            if  new_score > best_score:
+                best_score = new_score
+        return s
 
     def roulette(self, f):
         from random import random

@@ -191,11 +191,28 @@ class MotifFinding:
 
     # Consensus (heuristic)
   
-    def heuristicConsensus(self):
-        # ...
-        return None
+    def heuristicConsensus(self)->list:
+        """
+        Considera apenas as duas primeiras sequências, escolhe as posições inicias que dão um melhor score, e isto dá o melhor score parcial.
+        Depois itera para as restantes sequências e seleciona a posição que maximiza o score.
+        """
+        #Passo 1: Considerando apenas as duas primeiras sequências, escolher as posições iniciais s1 e s2 que dão um melhor score (melhor contribuição parcial para o score, i.e. considerando que existem apenas estas duas sequências).
+        find = MotifFinding(self.motifSize, self.seqs[:2])
+        es = find.exhaustiveSearch()
 
-    # Consensus (heuristic)
+        #Passo 2: Para cada uma das sequências seguintes (i=3, …,t) , de forma iterativa, escolher a melhor posição inicial na sequência i, de forma a maximizar o score, considerando as posições anteriores fixas
+        for p in range(2, len(self.seqs)):
+            es.append(p)
+            max_score = -1
+            bestpos = 0
+            for g in range (self.seqSize(p)-self.motifSize+1):
+                es[p] = g   #vetor das posições
+                score = self.score(es)
+                if score > max_score:
+                    max_score = score
+                    bestpos = g
+                es[p] = bestpos
+        return es
 
     def heuristicStochastic (self):
         #...
@@ -204,8 +221,12 @@ class MotifFinding:
 
     # Gibbs sampling 
 
-    def gibbs (self):
-        def gibbs (self):
+    def gibbs (self) ->list:
+        """
+        O modelo do motif é inicializado com subsequências selecionadas aleatoriamente, que são pontuadas em relação ao modelo inicial. A cada iteração, o algoritmo
+        executa uma pesquisa local decidindo probabilisticamente se um dos hits do motif deve ser atualizado. Para uma determinada sequência de entrada, remove a subsequência correspondente usada para modelar
+        o motif. Em seguida, tenta substituir por outra subsequência, calcula o score do motif, e decide se a atualização é mantida
+        """
         from random import randint
         #Passo 1:  Escolher posições iniciais de forma aleatória s = (s1 ,...,st ) e formar os segmentos respectivos.
         s = []
@@ -213,11 +234,8 @@ class MotifFinding:
             x = (randint(0, self.seqSize(i)))
             s.append(x)
         best_score = self.score(s) #calcula o score com base nas seqs da lista s
-        
-        #vamos criar uma variável "melhoria" que vai ocorrer um determinado número de vezes até esta não ocorrer
 
         x=0
-
         while x<2000:
             x+=1
 
@@ -225,8 +243,6 @@ class MotifFinding:
             randSeq = randint(0, (len(self.seqs)-1))
 
             #Passo 3: Criar perfil P das outras sequências a partir de s (excluindo a sequência escolhida aleatoriamente)
-            
-            
             random = self.seqs[randSeq]
             seqNoRandom = self.seqs.pop(randSeq)  #remove-se a sequência escolhida aleatoriamente anteriormente
             aux_seq_list = s.copy()  #lista auxiliar com todas as posições

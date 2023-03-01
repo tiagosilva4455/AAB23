@@ -221,6 +221,11 @@ class MotifFinding:
 
     # Gibbs sampling 
 
+# COISAS A FAZER
+        #Escolher dioxygen e ou sphynx e escrever documentação de acordo
+        #Implementar corretamente o gibbs, uso da roullette wheel...
+        #testes - ver powerpoint inicial do prof
+        
     def gibbs (self) ->list:
         """
         O modelo do motif é inicializado com subsequências selecionadas aleatoriamente, que são pontuadas em relação ao modelo inicial. A cada iteração, o algoritmo

@@ -191,7 +191,7 @@ class MotifFinding:
 
     # Consensus (heuristic)
   
-    def heuristicConsensus(self)->list:
+    def heuristicConsensus(self)->list[int]:
         """
         Considera apenas as duas primeiras sequências, escolhe as posições inicias que dão um melhor score, e isto dá o melhor score parcial.
         Depois itera para as restantes sequências e seleciona a posição que maximiza o score.
@@ -221,53 +221,53 @@ class MotifFinding:
 
     # Gibbs sampling 
 
-# COISAS A FAZER
-        #Escolher dioxygen e ou sphynx e escrever documentação de acordo
-        #Implementar corretamente o gibbs, uso da roullette wheel...
-        #testes - ver powerpoint inicial do prof
+
         
-    def gibbs (self) ->list:
+    def gibbs (self, iterations:int) -> list[int]:
         """
-        O modelo do motif é inicializado com subsequências selecionadas aleatoriamente, que são pontuadas em relação ao modelo inicial. A cada iteração, o algoritmo
-        executa uma pesquisa local decidindo probabilisticamente se um dos hits do motif deve ser atualizado. Para uma determinada sequência de entrada, remove a subsequência correspondente usada para modelar
-        o motif. Em seguida, tenta substituir por outra subsequência, calcula o score do motif, e decide se a atualização é mantida
+        Implementa o algoritmo de Gibbs Sampling
+        
+        Args:
+            Interations : número inteiro de iterações 
+
+        Returns:
+            best_score: float do melhor score até ao fim da ultima iteração
+            s: lista das posições inicias dos motifs nas sequências
+
+        Returns:
+
         """
         from random import randint
-        #Passo 1:  Escolher posições iniciais de forma aleatória s = (s1 ,...,st ) e formar os segmentos respectivos.
-        s = []
+        
+        seqPos = []
         for i in range(0, len(self.seqs)):
-            x = (randint(0, self.seqSize(i)))
-            s.append(x)
-        best_score = self.score(s) #calcula o score com base nas seqs da lista s
+            randPos = (randint(0, self.seqSize(i)-self.motifSize-1))
+            seqPos.append(randPos)
+        best_score = self.scoreMult(seqPos) #calcula o score com base nas seqs da lista s
 
         x=0
-        while x<2000:
+        while x<iterations:
             x+=1
 
-            #Passo 2: Escolher de forma aleatoria uma sequencia i
-            randSeq = randint(0, (len(self.seqs)-1))
-
-            #Passo 3: Criar perfil P das outras sequências a partir de s (excluindo a sequência escolhida aleatoriamente)
+            randSeq = randint(0, (len(self.seqs)-1)) #Passo 2
+           
             random = self.seqs[randSeq]
             seqNoRandom = self.seqs.pop(randSeq)  #remove-se a sequência escolhida aleatoriamente anteriormente
-            aux_seq_list = s.copy()  #lista auxiliar com todas as posições
+            aux_seq_list = seqPos.copy()  #lista auxiliar com todas as posições
             aux_seq_list.pop(randSeq)  #remover a posição da sequência escolhida aleatoriamente na lista s com as posições iniciais
             pwm = self.createMotifFromIndexes(aux_seq_list)#criação do perfil sem a sequência removida
-            pwm.createPWM()
+            pwm.createPWM() 
 
-            #Passo 4: Para cada posição p na sequência i, calcular a probabilidade do segmento iniciado em p com tamanho L, ser gerado por P.
-            
-            #Obter a melhor posição
-            s[randSeq] = pwm.mostProbableSeq(seqNoRandom)
-            #Inserir a sequencia aleatoria 
-            self.seqs.insert(randSeq,seqNoRandom) 
-            #Calcula o novo score 
-            new_score = self.score(s)
-            print(new_score)
-            #Verifica se houve melhoria     
-            if  new_score > best_score:
+            probPos= pwm.probAllPositions(random) #Obter a melhor posição
+            self.seqs.insert(randSeq,seqNoRandom)#Inserir a sequencia aleatoria 
+            pos = self.roulette(probPos)
+            aux_seq_list.insert(randSeq,pos)
+            new_score = self.scoreMult(aux_seq_list)
+               
+            if  new_score > best_score: #Verifica se houve melhoria  
                 best_score = new_score
-        return s
+                best_s = list(seqPos)
+        return best_score, best_s
 
     def roulette(self, f):
         from random import random

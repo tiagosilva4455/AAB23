@@ -37,12 +37,18 @@ class EAMotifsInt (EvolAlgorithm):
             fit = self.motifs.score(sol)
             ind.setFitness(fit)
 
-
+#Alterado
 class EAMotifsReal (EvolAlgorithm):
     def __init__(self, popsize, numits, noffspring, filename):
+        self.motifs=MotifFinding()
+        self.motifs.readFile(filename,"dna")
+        indsize = len(self.motifs)
+        EvolAlgorithm.__init__(self, popsize, noffspring, numits, indsize)
         pass
 
     def initPopul(self, indsize):
+        maxvalue = self.motifs.seqSize(0) - self.motifs.motifSize
+        minvalue = self.motifs.seqSize(0)
         pass
 
     def evaluate(self, indivs):

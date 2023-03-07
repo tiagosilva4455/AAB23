@@ -39,18 +39,39 @@ class EAMotifsInt (EvolAlgorithm):
 
 #Alterado
 class EAMotifsReal (EvolAlgorithm):
-    def __init__(self, popsize, numits, noffspring, filename, indsize):
+    """
+    Classe que devolve o melhor valor de fitness de uma população real
+    """
+    def __init__(self, popsize:int, numits:int, noffspring:int, filename:str, indsize:int)->None:
+        """
+        Args:
+            popsize: valor inteiro que indica o valor da população
+            numits: número de iterações
+            noffspring: número de descendentes
+            filename: ficheiro que contém as sequências
+            indsize: valor inteiro que indica o tamanho do indivíduo
+        """
         self.motifs = MotifFinding()
         self.motifs.readFile(filename,"dna")
         indsize = self.motifs.motifSize * len(self.motifs.alphabet)
         EvolAlgorithm.__init__(self, popsize, noffspring, numits, indsize)
 
-    def initPopul(self, indsize):
+    def initPopul(self, indsize:int)->None:
+        """
+        Cria uma população real
+        Args:
+            indsize: valor inteiro que indica o tamanho do indivíduo
+        """
         maxvalue = self.motifs.seqSize(0) - self.motifs.motifSize
         minvalue = 0
         self.popul=PopulReal(self.popsize, indsize, minvalue, maxvalue, [])
     
-    def pwmReal(self, vector):
+    def pwmReal(self, vector:list[int])-> list[float]:
+        """
+        Cria uma PWM de dimensão (tamanho do motif, número de símbolos do alfabeto do indivíduo)
+        Args:
+            vector: lista de genes do indivíduo
+        """
         tamMotif = self.motifs.motifSize
         tamAlphabet = len(self.motifs.alphabet)
 
@@ -68,7 +89,12 @@ class EAMotifsReal (EvolAlgorithm):
 
         return pwm
     
-    def evaluate(self, indivs):
+    def evaluate(self, indivs:list[int]):
+        """
+        Avalia qual é o melhor fitness da população
+        Args:
+            indivs: 
+        """
         for x in range(len(indivs)):
             ind = indivs[x]
             gen = ind.getGenes()

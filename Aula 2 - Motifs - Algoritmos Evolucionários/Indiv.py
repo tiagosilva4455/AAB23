@@ -1,4 +1,4 @@
-from random import randint, random, shuffle
+from random import randint, random, shuffle, uniform
 
 
 class Indiv:
@@ -109,12 +109,19 @@ class IndivInt (Indiv):
 #ALTERADOOOOOOO
 class IndivReal(Indiv):
 
+    def __init__(self, size, genes=[], lb=0, ub=1):
+        self.lb = lb
+        self.ub = ub
+        Indiv.__init__(self, size, genes, lb, ub)
+
     def initRandom(self, size):
         self.genes = []
         for _ in range(size):
-            self.genes.append(randint(self.lb, self.ub))
+            self.genes.append(uniform(self.lb, self.ub))
 
     def mutation(self):
         s = len(self.genes)
         pos = randint(0, s-1)
-        self.genes[pos] = randint(self.lb, self.ub)
+        self.genes[pos] = uniform(self.lb, self.ub)
+#usamos uniform devido ao cruzamento uniform dos genes
+

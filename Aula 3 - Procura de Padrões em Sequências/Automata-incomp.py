@@ -12,7 +12,9 @@ class Automata:
     def buildTransitionTable(self, pattern):
         for q in range(self.numstates):
             for a in self.alphabet:
-                # ...
+                pref = pattern[0:q] + a 
+                hit = overlap(pref,pattern)
+                self.transitionTable[(q,a)] = hit
        
     def printAutomata(self):
         print ("States: " , self.numstates)
@@ -22,18 +24,25 @@ class Automata:
             print (k[0], ",", k[1], " -> ", self.transitionTable[k])
          
     def nextState(self, current, symbol):
-        #return ...
+        return self.transitionTable.get((current, symbol)) #current - estado atual; symbol - simbolo de sequencia 
+    
+    #Poe se 2 parenteses porque a nossa key é o tuplo estado corrente e o symbolo que queremos analisar
         
     def applySeq(self, seq):
         q = 0
         res = [q]
-        #...
+        for n in seq:
+            q = self.nextState(q, n)
+            res.append(q)
         return res
         
-    def occurencesPattern(self, text):
+    def occurencesPattern(self, text): # posiçoes onde iniciam os p
         q = 0 
         res = []
-        # ....
+        for n in range(len(text)):
+            q = self.nextState(q, text[n])
+            if q == self.numstates-1: 
+                res.append(n-self.numstates+2)
         return res
 
 def overlap(s1, s2):

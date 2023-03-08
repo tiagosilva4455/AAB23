@@ -109,17 +109,33 @@ class IndivInt (Indiv):
 #ALTERADOOOOOOO
 class IndivReal(Indiv):
 
-    def __init__(self, size, genes=[], lb=0, ub=1):
+    def __init__(self, size:int, genes:list=[], lb:float=0.0, ub:float=1.0)->None:
+        """
+        Construtor do indivíduo real
+        Args:
+            size: tamanho do indivíduo
+            genes: lista de genes no indivíduo
+            lb: lower bound, que corresponde ao menor valor do alfabeto do gene
+            ub: upper bound, que corresponde ao maior valor do alfabeto do gene
+        """
         self.lb = lb
         self.ub = ub
         Indiv.__init__(self, size, genes, lb, ub)
 
-    def initRandom(self, size):
+    def initRandom(self, size:int)->None:
+        """
+        Criação de um indivíduo aleatório
+        Args:
+            size: tamanho do indivíduo
+        """
         self.genes = []
         for _ in range(size):
             self.genes.append(uniform(self.lb, self.ub))
 
-    def mutation(self):
+    def mutation(self)->None:
+        """
+        Acontecimento de uma mutação numa posição aleatória, seguindo uma distribuição uniforme num indivíduo
+        """
         s = len(self.genes)
         pos = randint(0, s-1)
         self.genes[pos] = uniform(self.lb, self.ub)

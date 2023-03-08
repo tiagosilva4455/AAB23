@@ -105,12 +105,24 @@ class PopulInt(Popul):
 #ALTERADO
 class PopulReal(Popul):
 
-    def __init__(self, popsize, indsize, lb=0.0, ub=1.0, indivs=[]):
+    def __init__(self, popsize:int, indsize:int, lb:float=0.0, ub:float=1.0, indivs:list[int]=[])->None:
+        """
+        Construtor da População Real
+        Args:
+            popsize: tamanho da população
+            indisize: tamanho do indivíduo
+            lb: lower bound, que corresponde ao menor valor do alfabeto do gene
+            ub: upper bound, que corresponde ao maior valor do alfabeto do gene
+            indivs: lista dos indivíduos
+            """
         self.lb = lb
         self.ub = ub
         Popul.__init__(self, popsize, indsize, indivs)
 
-    def initRandomPop(self):
+    def initRandomPop(self)->None:
+        """
+        Criação de uma população aleatória
+        """
         self.indivs = []
         for _ in range(self.popsize):
             indiv_r = IndivReal(self.indsize, [], self.lb, self.ub)

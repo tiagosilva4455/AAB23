@@ -42,6 +42,7 @@ class Popul:
     def selection(self, n, indivs=None):
         res = []
         fitnesses = list(self.linscaling(self.getFitnesses(indivs)))
+        print(fitnesses)
         for _ in range(n):
             sel = self.roulette(fitnesses)
             fitnesses[sel] = 0.0
@@ -51,9 +52,13 @@ class Popul:
     def roulette(self, f):
         tot = sum(f)
         val = random()
+        print(f)
+        print(val)
         acum = 0.0
         ind = 0
-        while acum < val:
+        print(tot)
+        print()
+        while acum <= val:
             acum += (f[ind] / tot)
             ind += 1
         return ind-1

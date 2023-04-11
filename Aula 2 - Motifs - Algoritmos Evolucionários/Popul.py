@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 
 from Indiv import Indiv, IndivInt, IndivReal
+from random import uniform
 from random import random
 
 
 class Popul:
 
-    def __init__(self, popsize, indsize, indivs=[]):
+    def __init__(self, popsize, indsize, indivs=[], const=0.0001):
         self.popsize = popsize
         self.indsize = indsize
+        self.const = const
         if indivs:
             self.indivs = indivs
         else:
@@ -50,18 +52,17 @@ class Popul:
         return res
 
     def roulette(self, f):
-        tot = sum(f)
-        val = random()
-        print(f)
-        print(val)
+        from random import random
+        tot = 0.0
+        for x in f:
+            tot += (0.01 + x)
+        val = random() * tot
         acum = 0.0
         ind = 0
-        print(tot)
-        print()
-        while acum <= val:
-            acum += (f[ind] / tot)
+        while acum < val:
+            acum += (f[ind] + 0.01)
             ind += 1
-        return ind-1
+        return ind - 1
 
     def linscaling(self, fitnesses):
         mx = max(fitnesses)

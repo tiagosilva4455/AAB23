@@ -71,6 +71,8 @@ class EAMotifsReal (EvolAlgorithm):
         Cria uma PWM de dimensão (tamanho do motif, número de símbolos do alfabeto do indivíduo)
         Args:
             vector: lista de genes do indivíduo
+        Returns:
+            lista correspondente à PWM
         """
         tamMotif = self.motifs.motifSize
         tamAlphabet = len(self.motifs.alphabet)
@@ -100,11 +102,12 @@ class EAMotifsReal (EvolAlgorithm):
             gen = ind.getGenes()
             pwm = self.pwmReal(gen)
             mymotifs = MyMotifs(pwm = pwm, alphabet=self.motifs.alphabet)
-        
-            pos=[]
-            for seq in self.motifs.seqs:
-                p = mymotifs.mostProbableSeq(seq)
-                pos.append(p)
+
+            pos = [mymotifs.mostProbableSeq(seq) for seq in self.motifs.seqs]
+            #pos=[]
+            #for seq in self.motifs.seqs:
+            #    p = mymotifs.mostProbableSeq(seq)
+            #   pos.append(p)
             fit = self.motifs.score(pos)
             ind.setFitness(fit)
 

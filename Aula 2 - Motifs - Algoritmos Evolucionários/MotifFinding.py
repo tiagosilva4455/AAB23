@@ -163,8 +163,6 @@ class MotifFinding:
         tot = 0.0
         for x in f:
             tot += (0.01+x)
-        #tot = sum(f)
-        # if tot == 0: return 0
         val = random() * tot
         acum = 0.0
         ind = 0

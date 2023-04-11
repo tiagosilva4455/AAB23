@@ -62,8 +62,6 @@ class MotifFinding:
         Esta info é adicionada à lista pseqs, que é uma lista de motifs
         Args:
             indexes : indica a posição pela qual vamos começar a contar o motif
-        Returns:
-            (?) list
         """
         pseqs = []
         for i,ind in enumerate(indexes):
@@ -74,13 +72,6 @@ class MotifFinding:
     # SCORES
         
     def score(self, s:int) -> list:
-        """
-        Função que determina os scores nas diferentes colunas
-        Args:
-            s : posições iniciais (?)
-        Returns:
-            lista com os diferentes valores de score de cada coluna
-        """
         score = 0
         motif = self.createMotifFromIndexes(s)
         motif.doCounts()

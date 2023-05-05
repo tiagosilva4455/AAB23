@@ -4,14 +4,24 @@ from MotifFinding import MotifFinding
 from MyMotifs import MyMotifs
 
 
-def createMatZeros(nl, nc):
+def createMatZeros(nl:int, nc:int)->list[int]:
+    """
+    @brief Cria uma matriz de zeros
+    @param nl: número de linhas
+    @param nc: número de colunas
+    @returns lista de zeros, que corresponde à matriz
+    """
     res = []
     for _ in range(0, nl):
         res.append([0]*nc)
     return res
 
 
-def printMat(mat):
+def printMat(mat:list)->None:
+    """
+    @brief Função que imprime a matriz
+    @param mat: matriz
+    """
     for i in range(0, len(mat)):
         for j in range(len(mat[i])):
             print(f"{mat[i][j]:.3f}", end=' ')
@@ -19,37 +29,56 @@ def printMat(mat):
 
 
 class EAMotifsInt (EvolAlgorithm):
-    def __init__(self, popsize, numits, noffspring, filename):
+    """
+    @brief Classe que devolve o melhor valor de fitness de uma população, usando a class EvolAlgorithm
+    """
+    def __init__(self, popsize:int, numits:int, noffspring:int, filename:str)->None:
+        """
+        @brief Construtor da class EAMotifsInt
+        @param popsize: indica o tamanho da população
+        @param numits: indica o número de iterações
+        @param noffspring: indica o númerode novos descendentes
+        @param filename: indica o nome do ficheiro que vamos ler
+        @returns None
+        """
         self.motifs = MotifFinding()
         self.motifs.readFile(filename, "dna")
         indsize = len(self.motifs)
         EvolAlgorithm.__init__(self, popsize, numits, noffspring, indsize)
 
-    def initPopul(self, indsize):
+    def initPopul(self, indsize:int)->None:
+        """
+        @brief Gera uma nova população
+        @param indsize: indica o tamanho do indivíduo
+        """
         maxvalue = self.motifs.seqSize(0) - self.motifs.motifSize
         self.popul = PopulInt(self.popsize, indsize,
                               maxvalue, [])
 
-    def evaluate(self, indivs):
+    def evaluate(self, indivs:list[int])->None:
+        """
+        @brief Função de avaliação, em que usamos o score, do melhor fitness da população
+        @param indivs: indivíduos
+        """
         for i in range(len(indivs)):
-            ind = indivs[i]
+            ind = indivs[i]  #cada vetor de posições
             sol = ind.getGenes()
-            fit = self.motifs.score(sol)
+            fit = self.motifs.score(sol)  #avalia o score que será o fit para cada vetor de posições iniciais
             ind.setFitness(fit)
 
-#Alterado
+#ALTERADO
 class EAMotifsReal (EvolAlgorithm):
     """
-    Classe que devolve o melhor valor de fitness de uma população real
+    @brief Classe que devolve o melhor valor de fitness de uma população real
     """
     def __init__(self, popsize:int, numits:int, noffspring:int, filename:str, indsize:int)->None:
         """
-        Args:
-            popsize: valor inteiro que indica o valor da população
-            numits: número de iterações
-            noffspring: número de descendentes
-            filename: ficheiro que contém as sequências
-            indsize: valor inteiro que indica o tamanho do indivíduo
+        @brief Contrutor da class EAMotifsReal
+        @param popsize: valor inteiro que indica o valor da população
+        @param numits: indica o número de iterações
+        @param noffspring: indica o número de descendentes
+        @param filename: ficheiro que vamos ler que contém as sequências
+        @param indsize: valor inteiro que indica o tamanho do indivíduo
         """
         self.motifs = MotifFinding()
         self.motifs.readFile(filename,"dna")
@@ -58,9 +87,8 @@ class EAMotifsReal (EvolAlgorithm):
 
     def initPopul(self, indsize:int)->None:
         """
-        Cria uma população real
-        Args:
-            indsize: valor inteiro que indica o tamanho do indivíduo
+        @brief Função que cria uma população real
+        @params indsize: valor inteiro que indica o tamanho do indivíduo
         """
         maxvalue = self.motifs.seqSize(0) - self.motifs.motifSize
         minvalue = 0
@@ -68,11 +96,9 @@ class EAMotifsReal (EvolAlgorithm):
     
     def pwmReal(self, vector:list[int])-> list[float]:
         """
-        Cria uma PWM de dimensão (tamanho do motif, número de símbolos do alfabeto do indivíduo)
-        Args:
-            vector: lista de genes do indivíduo
-        Returns:
-            lista correspondente à PWM
+        @brief Cria uma PWM de dimensão (tamanho do motif, número de símbolos do alfabeto do indivíduo)
+        @params vector: lista de genes do indivíduo
+        @returns lista correspondente à PWM
         """
         tamMotif = self.motifs.motifSize
         tamAlphabet = len(self.motifs.alphabet)
@@ -91,11 +117,10 @@ class EAMotifsReal (EvolAlgorithm):
 
         return pwm
     
-    def evaluate(self, indivs:list[int]):
+    def evaluate(self, indivs:list[int])->None:
         """
-        Avalia qual é o melhor fitness da população
-        Args:
-            indivs: 
+        @brief Função que avalia qual é o melhor fitness da população
+        @params indivs: indivíduos 
         """
         for x in range(len(indivs)):
             ind = indivs[x]

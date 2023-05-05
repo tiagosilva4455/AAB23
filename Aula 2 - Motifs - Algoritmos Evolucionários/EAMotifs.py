@@ -120,7 +120,7 @@ class EAMotifsReal (EvolAlgorithm):
     def evaluate(self, indivs:list[int])->None:
         """
         @brief Função que avalia qual é o melhor fitness da população
-        @params indivs: indivíduos 
+        @params indivs: lista de indivíduos 
         """
         for x in range(len(indivs)):
             ind = indivs[x]

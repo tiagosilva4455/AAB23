@@ -24,10 +24,10 @@ class EvolAlgorithm:
         """
         self.popul = Popul(self.popsize, indsize)
 
-    def evaluate(self, indivs:int)->None:
+    def evaluate(self, indivs:list[int])->None:
         """
-        @brief Função de avaliação
-        @param indivs: número de indivíduos
+        @brief Função de avaliação do melhor fitness da população, que recebe como entrada o genoma de um indivíduo e retorna o seu valor de aptidão
+        @param indivs: indivíduos (aleatório)
         """
         for i in range(len(indivs)):  #estamos a definiri a função de avaliação para cada indiv
             ind = indivs[i]

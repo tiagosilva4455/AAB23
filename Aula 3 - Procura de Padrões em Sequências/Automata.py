@@ -14,6 +14,13 @@ class Automata:
         '''
         Cria a tabela das transições, em que as chaves são tuplos e os valores representam o next state
         '''
+
+        def overlap(s1, s2):
+            maxov = min(len(s1), len(s2))
+            for i in range(maxov, 0, -1):
+                if s1[-i:] == s2[:i]: return i
+            return 0
+
         for q in range(self.numstates):
             for a in self.alphabet:
                 pref = self.pattern[0:q] + a 
@@ -71,12 +78,7 @@ class Automata:
                 res.append(n-self.numstates+2)
         return res
 
-def overlap(s1, s2):
-    maxov = min(len(s1), len(s2))
-    for i in range(maxov,0,-1):
-        if s1[-i:] == s2[:i]: return i
-    return 0
-               
+
 def test():
     auto = Automata("AC", "ACA")
     auto.printAutomata()

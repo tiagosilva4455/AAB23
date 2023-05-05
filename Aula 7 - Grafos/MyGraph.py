@@ -37,11 +37,14 @@ class MyGraph:
     
     def add_vertex(self, v):
         ''' Add a vertex to the graph; tests if vertex exists not adding if it does '''
-        #....
+        if v not in self.graph.keys(): #pode se omitir o .keys()
+            self.graph[v]=[]
         
     def add_edge(self, o, d):
         ''' Add edge to the graph; if vertices do not exist, they are added to the graph ''' 
-        # ...
+        self.add_vertex(o)
+        self.add_vertex(d)
+        self.graph[o].add(d)
 
     ## successors, predecessors, adjacent nodes
         
@@ -49,24 +52,34 @@ class MyGraph:
         return list(self.graph[v])     # needed to avoid list being overwritten of result of the function is used
              
     def get_predecessors(self, v):
-        # ...
+        res=[]
+        for k in self.graph:
+            if v in self.graph[k]:
+                res.append(k)
+        return res
     
     def get_adjacents(self, v):
-        # ...
+        suc = self.get_successors(v)
+        pred = self.get_predecessors(v)
+        res = pred
+        for p in suc:
+            if p not in res: res.append(p)
+        return res
         
     ## degrees    
     
     def out_degree(self, v):
-        #return ...
+        return len(self.graph[v])
     
     def in_degree(self, v):
-        #return ...
+        return len(self.get_predecessors(v))
         
     def degree(self, v):
-        #return ...
-        
+        return len(self.get_adjacents(v))
     
-    ## BFS and DFS searches    
+    # BFS (Breadth First) and DFS (Depth First) searches
+    # Existe tambem o interative deepening que nos dá o melhor dos dois mundos porem é menos eficiente
+
     
     def reachable_bfs(self, v):
         l = [v]

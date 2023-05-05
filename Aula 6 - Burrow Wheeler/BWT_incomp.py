@@ -8,13 +8,13 @@ class BWT:
     def set_bwt(self, bw):
         self.bwt = bw
 
-    def build_bwt(self, text:str, buildsufarray = False)->str:
+    def build_bwt(self, text:str, buildsufarray:bool = False)->str:
         """
         Retorna a ultima coluna da matriz da BWT
     
         Args:
             text (str): texto de entrada para o qual a BWT será construída.
-            buildsufarray (bool, opcional): booleano que indica se o array de sufixos deve ser construído. valor por default é False.
+            buildsufarray (bool, opcional): boolean que indica se o array de sufixos deve ser construído, valor por default é False.
 
         Returns:
             res (str): a transformada de Burrows-Wheeler do texto de entrada.

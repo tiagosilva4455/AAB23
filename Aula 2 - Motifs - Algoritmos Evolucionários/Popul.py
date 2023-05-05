@@ -51,7 +51,12 @@ class Popul:
             res.append(sel)
         return res
 
-    def roulette(self, f):
+    def roulette(self, f : List[float]):
+        """
+        @brief faz a selecao por roleta
+        @param f lista de fitnesses
+        @returns indice do individuo escolhido
+        """
         from random import random
         tot = 0.0
         for x in f:

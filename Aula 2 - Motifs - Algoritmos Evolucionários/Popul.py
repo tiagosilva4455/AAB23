@@ -10,7 +10,7 @@ class Popul:
     def __init__(self, popsize:int, indsize:int, indivs:list[int]=[])->None:
         """
         @brief Contrutor da class Popul
-        @param popsize: tamanho da população
+        @param popsize: número de indivíduos da população
         @param indsize: tamanho dos indivíduos
         @param indivs : lista de indivíduos
         """
@@ -98,7 +98,7 @@ class Popul:
 
     def linscaling(self, fitnesses:list[float])->list[float]:
         """
-        @brief Normalização do valor de aptidão para uniforme [0,1]
+        @brief Normalização do valor de aptidão 
         @param fitnesses: valores de fitness
         @returns Lista de valores de fitness normalizados
         """
@@ -122,8 +122,8 @@ class Popul:
         while new_inds < noffspring:
             parent1 = self.indivs[parents[new_inds]]  #progenitor 1
             parent2 = self.indivs[parents[new_inds+1]] #progenitor 2
-            offsp1, offsp2 = parent1.crossover(parent2)  #cruzzamento entre os progenitores
-            offsp1.mutation() #mutação
+            offsp1, offsp2 = parent1.crossover(parent2)  #cruzzamento entre os progenitores - cruzamento para criar novas soluções
+            offsp1.mutation() #mutação a cada nova solução
             offsp2.mutation()
             offspring.append(offsp1)
             offspring.append(offsp2)
@@ -132,7 +132,7 @@ class Popul:
 
     def reinsertion(self, offspring:int)->None:
         """
-        @brief Mecanismo de reinserção -> seleção de indivíduos que vão constituir a população OU interação seguinte
+        @brief Mecanismo de reinserção -> seleção de indivíduos que vão constituir a população
         @param offpring: descendentes
         """
         tokeep = self.selection(self.popsize-len(offspring))  #seleção dos indivíduos
@@ -144,12 +144,15 @@ class Popul:
 
 
 class PopulInt(Popul):
+    """
+    Classe PopulInt que estende a class Popul, herdando todos os seus métodos
+    """
 
     def __init__(self, popsize:int, indsize:int, ub:float, indivs:list[int]=[]):
         """
         @brief Construtor da class PopulInt
-        @param popsize: tamanho da população
-        @param indsize: tamanho do indivíduo
+        @param popsize: número de indivíduos da população
+        @param indsize: tamanho dos indivíduos
         @param ub: upper bound
         @param indivs: lista de indivíduos
         """
@@ -171,8 +174,8 @@ class PopulReal(Popul):
     def __init__(self, popsize:int, indsize:int, lb:float=0.0, ub:float=1.0, indivs:list[int]=[])->None:
         """
         @brief Construtor da População Real
-        @param popsize: tamanho da população
-        @param indsize: tamanho do indivíduo
+        @param popsize: número de indivíduos da população
+        @param indsize: tamanho dos indivíduos
         @param lb: lower bound, que corresponde ao menor valor do alfabeto do gene
         @param ub: upper bound, que corresponde ao maior valor do alfabeto do gene
         @param indivs: lista dos indivíduos

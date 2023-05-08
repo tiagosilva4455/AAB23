@@ -30,7 +30,7 @@ def printMat(mat:list)->None:
 
 class EAMotifsInt (EvolAlgorithm):
     """
-    @brief Classe que devolve o melhor valor de fitness de uma população, usando a class EvolAlgorithm
+    @brief Classe que devolve o melhor valor de fitness de uma população, herdando os métodos da class EvolAlgorithm
     """
     def __init__(self, popsize:int, numits:int, noffspring:int, filename:str)->None:
         """
@@ -39,7 +39,7 @@ class EAMotifsInt (EvolAlgorithm):
         @param numits: indica o número de iterações
         @param noffspring: indica o númerode novos descendentes
         @param filename: indica o nome do ficheiro que vamos ler
-        @returns None
+        @return None
         """
         self.motifs = MotifFinding()
         self.motifs.readFile(filename, "dna")

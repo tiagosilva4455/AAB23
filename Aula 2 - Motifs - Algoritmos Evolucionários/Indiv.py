@@ -6,10 +6,10 @@ class Indiv:
     @brief Class de Indivíduo
     """
 
-    def __init__(self, size:int, genes:list=[], lb:float=0.0, ub:float=1.0)->None:
+    def __init__(self, size:int, genes:list=[], lb:int=0, ub:int=1)->None:
         """
         @brief Construtor da class Indiv
-        @param size: tamanho do????
+        @param size: tamanho do indivíduo
         @param genes: genoma
         @param lb: limite inferior do intevalo para representação do gene, assume 0 caso nenhum valor for indicado
         @param ub: limite superior do intevalo para representação do gene, assume 1 caso nenhum valor for indicado
@@ -66,8 +66,8 @@ class Indiv:
 
     def initRandom(self, size:int)->None:
         """
-        @brief Inicialização de um indivíduo de forma aleatória
-        @param size tamanho ????
+        @brief Inicialização de um indivíduo de forma aleatória (o genoma terá valores 0 ou 1)
+        @param size tamanho do indivíduo
         """
         self.genes = []
         for _ in range(size):
@@ -75,7 +75,7 @@ class Indiv:
 
     def mutation(self)->None:
         """
-        @brief Mutações para representações binárias que altera um único gene, em que apenas uma poisção vai variar
+        @brief Mutações para representações binárias que altera um único gene, em que apenas uma poisção vai variar (se for 0 passa para 1, e se for 1 passa para 0)
         """
         s = len(self.genes)
         pos = randint(0, s-1)  #seleciona uma posição no vetor de forma aleatória
@@ -84,18 +84,18 @@ class Indiv:
         else:
             self.genes[pos] = 0  #se o vetor não for zero, passa a ser zero
 
-    def crossover(self, indiv2):
+    def crossover(self, indiv2:list[int])->list[int]:
         """
         @brief Cruzamento de um ponto
         @param indiv2: indivíduo com o qual o indiv vai fazer o cruzamento
         """
         return self.one_pt_crossover(indiv2)
 
-    def one_pt_crossover(self, indiv2):
+    def one_pt_crossover(self, indiv2:list[int])->list[int]:
         """
         @brief Função operadora do cruzamento em um ponto
         @param indiv2: indivíduo com o qual o indiv vai fazer o cruzamento
-        @returns Nova instância com base na representação do novo
+        @returns Nova instância com base na representação do novo indivíduo
         """
         offsp1 = []
         offsp2 = []
@@ -117,10 +117,10 @@ class IndivInt (Indiv):
     @brief Class IndivInt que estende a class Indiv, herdando todos os seus métodos
     """
 
-    def __init__(self, size:int, genes:list=[], lb:float=0.0, ub:float=1.0)->None:
+    def __init__(self, size:int, genes:list=[], lb:int=0, ub:int=1)->None:
         """
         @brief Construtor da class Indiv
-        @param size: tamanho do????
+        @param size: tamanho do indivíduo
         @param genes: genoma
         @param lb: limite inferior do intevalo para representação do gene, assume 0 caso nenhum valor for indicado
         @param ub: limite superior do intevalo para representação do gene, assume 1 caso nenhum valor for indicado
@@ -135,13 +135,16 @@ class IndivInt (Indiv):
     def initRandom(self, size:int)->None:
         """
         @brief Inicialização de um indivíduo de forma aleatória aleatória
-        @param size tamanho ????
+        @param size tamanho do individuo
         """
         self.genes = []
         for _ in range(size):
             self.genes.append(randint(0, self.ub))
 
     def mutation(self):
+        """
+        @brief Mutações para representações binárias que altera um único gene, em que apenas uma poisção vai variar.
+        """
         s = len(self.genes)
         pos = randint(0, s-1)
         self.genes[pos] = randint(0, self.ub)
@@ -157,8 +160,8 @@ class IndivReal(Indiv):
         @brief Construtor do indivíduo real
         @param size: tamanho do indivíduo
         @param genes: lista de genes no indivíduo
-        @param lb: lower bound, que corresponde ao menor valor do alfabeto do gene
-        @param ub: upper bound, que corresponde ao maior valor do alfabeto do gene
+        @param lb: limite inferior do intevalo para representação do gene, assume 0.0 caso nenhum valor for indicado
+        @param ub: limite superior do intevalo para representação do gene, assume 1.0 caso nenhum valor for indicado
         """
         self.lb = lb
         self.ub = ub
@@ -167,7 +170,7 @@ class IndivReal(Indiv):
     def initRandom(self, size:int)->None:
         """
         @brief Inicialização de um indivíduo de forma aleatória aleatória
-        @param size tamanho ????
+        @param size tamanho do indivíduo
 
         """
         self.genes = []

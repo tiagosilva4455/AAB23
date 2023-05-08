@@ -2,7 +2,9 @@ from Popul import Popul
 
 
 class EvolAlgorithm:
-
+    """
+    Classe para implementar algoritmos evolucionários com representações binárias
+    """
     def __init__(self, popsize:int, numits:int, noffspring:int, indsize:int)->None:
         """
         @brief Construtor da class EvolAlgorithm
@@ -17,7 +19,7 @@ class EvolAlgorithm:
         self.noffspring = noffspring
         self.indsize = indsize
 
-    def initPopul(self, indsize:int)>None:
+    def initPopul(self, indsize:int)->None:
         """
         @brief Gera uma nova população
         @param indsize: indica o tamanho do indivíduo
@@ -40,12 +42,12 @@ class EvolAlgorithm:
 
     def iteration(self)->None:
         """
-        @brief Função que realiza a iteração
+        @brief Função que realiza a iteração. Ciclo principal do AE
         """
         parents = self.popul.selection(self.noffspring)  #seleção da população inicial 
         offspring = self.popul.recombination(parents, self.noffspring)   #nova geração
         self.evaluate(offspring) #avaliação da nova geração
-        self.popul.reinsertion(offspring)    #resinserção, onde há a selação dos indivíduos que vão constituir a população OU iteração seguinte
+        self.popul.reinsertion(offspring)    #resinserção, onde há a selação dos indivíduos que vão constituir a população
         #continua até atingir o critério de paragem -> solução final: melhor indivíduo da população final
 
     def run(self)->None:

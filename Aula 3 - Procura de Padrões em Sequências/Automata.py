@@ -15,9 +15,9 @@ class Automata:
         self.transitionTable = {}
         self.buildTransitionTable()        
     
-    def buildTransitionTable(self):
+    def buildTransitionTable(self)->None:
         '''
-        Cria a tabela das transições, em que as chaves são tuplos e os valores representam o next state
+        @brief Cria a tabela das transições, em que as chaves são tuplos e os valores representam o next state
         '''
         def overlap(s1:str, s2:str)->None:
             """
@@ -36,7 +36,10 @@ class Automata:
                 hit = overlap(pref,self.pattern) #encontrar o comprimento do maior prefixo comum entre essa string "pref" e o padrão completo que o autómato procura
                 self.transitionTable[(q,a)] = hit #valor retornado pela função overlap é armazenado na tabela de transição na posição correspondente ao estado e símbolo de entrada
        
-    def printAutomata(self):
+    def printAutomata(self)->None:
+        """
+        @brief Função que imprime o estado, o alfabeto e a tabela de transição
+        """
         print ("States: " , self.numstates)
         print ("Alphabet: " , self.alphabet)
         print ("Transition table:")

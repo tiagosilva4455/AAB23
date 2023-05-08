@@ -11,11 +11,9 @@ class MotifFinding:
     
     def __init__(self, size:int = 8, seqs:list = None)-> None:
         """
-        Construtor com os atributos necessários para a class MotifFinding
-
-        Args:
-            size: vê o tamanho do motif, em caso de não ser definido recebe o valor 8
-            seqs: lista com as sequências, recebe None se não forem dadas sequências e teremos uma lista vazia
+        @brief Construtor com os atributos necessários para a class MotifFinding
+        @param size: vê o tamanho do motif, em caso de não ser definido recebe o valor 8
+        @param seqs: lista com as sequências, recebe None se não forem dadas sequências e teremos uma lista vazia
         """
         self.motifSize = size
         if (seqs != None):
@@ -26,42 +24,39 @@ class MotifFinding:
                     
     def __len__ (self) -> int:
         """
-        Indica o número de elementos/sequências presentes na lista self.seqs
-        Returns:
-            Devolve o número de elementos da lista
+        @brief Indica o número de elementos/sequências presentes na lista self.seqs
+        @return Devolve o número de elementos da lista
         """
         return len(self.seqs)
     
     def __getitem__(self, n) -> str:
         """
-        Interface para a indexação []
+        @brief Interface para a indexação []
         """
         return self.seqs[n]
     
     def seqSize (self, i: int) -> int:
         """
-        Comprimento da sequência i que está presente na lista self.seqs
+        @brief Comprimento da sequência i que está presente na lista self.seqs
         """
         return len(self.seqs[i])
     
     def readFile(self, fic:str, t:str) -> None:
         """
-        Função que lê ("r") um ficheiro, separa por espaços cada sequência (strip), e adiciona cada sequência à lista self.seqs
-        Args:
-            fic : ficheiro a ser lido
-            t : tipo de sequência
+        @brief Função que lê ("r") um ficheiro, separa por espaços cada sequência (strip), e adiciona cada sequência à lista self.seqs
+        @param fic : ficheiro a ser lido
+        @param t : tipo de sequência
         """
         for s in open(fic, "r"):
             self.seqs.append(MySeq(s.strip().upper(),t))
         self.alphabet = self.seqs[0].alfabeto()
         
         
-    def createMotifFromIndexes(self, indexes:int) -> list:
+    def createMotifFromIndexes(self, indexes:int) -> list[int]:
         """
-        Crição de uma matriz, a partir da definição da posição onde o motif começará a ser contado e onde termina, identificando o seu tipo (t). 
-        Esta info é adicionada à lista pseqs, que é uma lista de motifs
-        Args:
-            indexes : indica a posição pela qual vamos começar a contar o motif
+        @brief Crição de uma matriz, a partir da definição da posição onde o motif começará a ser contado e onde termina, identificando o seu tipo (t). Esta info é adicionada à lista pseqs, que é uma lista de motifs
+        @param indexes : indica a posição pela qual vamos começar a contar o motif
+        @return objeto MyMotifs com as sequências de motif
         """
         pseqs = []
         for i,ind in enumerate(indexes):
@@ -71,7 +66,13 @@ class MotifFinding:
         
     # SCORES
         
-    def score(self, s:int) -> list:
+    def score(self, s:int) -> list[int]:
+        """
+        @brief Calcula o escore do motif representado pelos índices 's', que indicam a posição inicial de cada sequência no 
+        conjunto de sequências. O score é a soma das maiores contagens em cada coluna da matriz de contagem do motif
+        @param s: Índices que indicam a posição inicial de cada sequência no conjunto de sequências
+        @return lista com os scores para cada posição inicial
+        """
         score = 0
         motif = self.createMotifFromIndexes(s)
         motif.doCounts()
@@ -84,9 +85,11 @@ class MotifFinding:
             score += maxcol             #adiciona o valor de cada coluna ao score
         return score                    #lista das várias colunas com valores maiores das linhas = score
    
-    def scoreMult(self, s):
+    def scoreMult(self, s:int)->float:
         """
-        Acho que é o mesmo de cima mas com PWM not sure
+        @brief Calcula o escore do motif representado pelos índices 's', que indicam a posição inicial de cada sequência no conjunto de sequências. O score é o produto das probabilidades das bases do motif, calculadas a partir da matriz de frequência do motif
+        @param s: Índices que indicam a posição inicial de cada sequência no conjunto de sequências
+        @return Score do motif representado pelos índices 's'
         """
         score = 1.0
         motif = self.createMotifFromIndexes(s)
@@ -102,7 +105,13 @@ class MotifFinding:
        
     # EXHAUSTIVE SEARCH
        
-    def nextSol (self, s):
+    def nextSol (self, s:list[int])->list[int]:
+        """
+        @brief próxima solução no espaço de procura para a posição do Motif. 
+        @param s:vetor de posições de Motif
+        @return A próxima solução, ou None se não houver mais soluções
+        
+        """
         nextS = [0]*len(s)
         pos = len(s) - 1     
         while pos >=0 and s[pos] == self.seqSize(pos) - self.motifSize:
@@ -117,9 +126,10 @@ class MotifFinding:
                 nextS[i] = 0
         return nextS
         
-    def exhaustiveSearch(self):
+    def exhaustiveSearch(self)->list[int]:
         """
-        Calcula o score de cada possível vetor de posições
+        @brief Calcula o score de cada possível vetor de posições para o Motif e retorna a posição com o melhor score
+        @return vetor de posições do Motif com o melhor score encontrado
         """
         melhorScore = -1
         res = []
@@ -134,7 +144,12 @@ class MotifFinding:
      
     # BRANCH AND BOUND     
      
-    def nextVertex (self, s):
+    def nextVertex (self, s:list[int])->list[int]:
+        """
+        @brief Dada uma solução parcial `s`, retorna a próxima solução candidata na árvore de procura
+        @param s: Uma solução parcial
+        @return A próxima solução candidata na árvore de procura
+        """
         res =  []
         if len(s) < len(self.seqs): # internal node -> down one level
             for i in range(len(s)): 
@@ -151,7 +166,12 @@ class MotifFinding:
         return res
     
     
-    def bypass (self, s):
+    def bypass (self, s:list[int])->list[int]:
+        """
+        @brief Dada uma solução parcial `s`, retorna a próxima solução candidata na árvore de procura saltando um nível.
+        @param s: solução parcial.
+        @return: A próxima solução candidata na árvore de procura, ou None se não houver mais soluções possíveis.
+        """
         res =  []
         pos = len(s) -1
         while pos >=0 and s[pos] == self.seqSize(pos) - self.motifSize:
@@ -162,7 +182,11 @@ class MotifFinding:
             res.append(s[pos]+1)
         return res
         
-    def branchAndBound (self):
+    def branchAndBound (self)->list[int]:
+        """
+        @brief Encontra o melhor vetor de posições do motivo usando o método Branch and Bound
+        @return O melhor vetor de posições do motivo encontrado, ou None se não houver soluções possíveis
+        """
         melhorScore = -1
         melhorMotif = None
         size = len(self.seqs)
@@ -184,8 +208,8 @@ class MotifFinding:
   
     def heuristicConsensus(self)->list[int]:
         """
-        Considera apenas as duas primeiras sequências, escolhe as posições inicias que dão um melhor score, e isto dá o melhor score parcial.
-        Depois itera para as restantes sequências e seleciona a posição que maximiza o score.
+        @brief Considera apenas as duas primeiras sequências, escolhe as posições inicias que dão um melhor score, e isto dá o melhor score parcial. Depois itera para as restantes sequências e seleciona a posição que maximiza o score.
+        @return vetor de posições que produz o melhor alinhamento do motif em todas as sequências
         """
         #Passo 1: Considerando apenas as duas primeiras sequências, escolher as posições iniciais s1 e s2 que dão um melhor score (melhor contribuição parcial para o score, i.e. considerando que existem apenas estas duas sequências).
         find = MotifFinding(self.motifSize, self.seqs[:2])
@@ -205,34 +229,47 @@ class MotifFinding:
                 es[p] = bestpos
         return es
 
-    def heuristicStochastic (self):
-        #...
-
-        return None
-
-    # Gibbs sampling 
-
-
-        
-    def gibbs (self, iterations:int) -> list[int]:
+    def heuristicStochastic (self)->list[str]:
         """
-        Implementa o algoritmo de Gibbs Sampling
-        
-        Args:
-            Interations : número inteiro de iterações 
-
-        Returns:
-            best_score: float do melhor score até ao fim da ultima iteração
-            s: lista das posições inicias dos motifs nas sequências
-
-        Returns:
-
+        @brief: Implementa a heurística estocástica para encontrar o melhor motif a partir das sequências fornecidas
+        @return: Retorna a lista de posições dos motifs, ou None caso a busca não tenha obtido sucesso
         """
         from random import randint
-        
+        s = [0] * len(self.seqs)
+        #Passo 1: Seleciona as posições iniciais de forma aleatória
+        for i in range(len(self.seqs)):
+            s[i] = randint(0, self.seqSize(i) - self.motifSize)  #como é random, pode escolher um otimo local mas não uma solução ótima
+        #Passo 2: Cria um oerfuk P a partir das posições geradas no passo 1
+        best_score = self.score(s)
+        improve = True
+        while improve:
+            motif = self.createMotifFromIndexes(s)
+            motif.createPWM()
+        #Passo 3: Descobrir o segmento mais provável em cada sequência usando P
+            for i in range(len(self.seqs)):
+                s[i] = motif.mostProbableSeq(self.seqs[i])
+        #Passo 4: caclula um novo perfil P baseado nas posições calculadas em 3
+            scr = self.score(s)
+            if scr < best_score:
+                best_score = scr
+            else:
+                improve = False
+            return s
+        return None
+
+
+    # Gibbs sampling 
+    def gibbs (self, iterations:int) -> list[int]:
+        """
+        @brief Implementa o algoritmo de Gibbs Sampling
+        @param iterations : número inteiro de iterações 
+        @return best_score: float do melhor score até ao fim da ultima iteração
+        @return s: lista das posições inicias dos motifs nas sequências
+        """
+        from random import randint
         seqPos = []
         for i in range(0, len(self.seqs)):
-            randPos = (randint(0, self.seqSize(i)-self.motifSize-1))
+            randPos = randint(0, self.seqSize(i)-self.motifSize-1)
             seqPos.append(randPos)
         best_score = self.scoreMult(seqPos) #calcula o score com base nas seqs da lista s
 
@@ -260,7 +297,12 @@ class MotifFinding:
                 best_s = list(seqPos)
         return best_score, best_s
 
-    def roulette(self, f):
+    def roulette(self, f:list[int])->int:
+        """
+        @brief Seleciona um índice aleatório com base na probabilidade de cada elemento em f
+        @param f: Lista de valores de probabilidade
+        @return Índice aleatório selecionado com base nas probabilidades em f
+        """
         from random import random
         tot = 0.0
         for x in f: tot += (0.01+x)

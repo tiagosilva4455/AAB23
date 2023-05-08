@@ -103,7 +103,7 @@ class EAMotifsReal (EvolAlgorithm):
         tamMotif = self.motifs.motifSize
         tamAlphabet = len(self.motifs.alphabet)
 
-        mat_zero = createMatZeros(tamAlphabet, tamMotif)
+        mat_zero = createMatZeros(len(tamAlphabet), tamMotif)
 
         for x in range(0, len(vector), tamAlphabet):
             columnIndex = int(x/tamAlphabet)

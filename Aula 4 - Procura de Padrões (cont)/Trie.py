@@ -2,24 +2,34 @@
 
 class Trie:
     
-    def __init__(self):
+    def __init__(self)->None:
+        """
+        @brief Construtor da class Trie
+        """
         self.nodes = { 0:{} } # dictionary
         self.num = 0
     
-    def print_trie(self):
+    def print_trie(self)->None:
+        """
+        @brief Função que imprime a Trie
+        """
         for k in self.nodes.keys():
             print (k, "->" , self.nodes[k]) 
     
-    def add_node(self, origin, symbol):
-        self.num += 1
-        self.nodes[origin][symbol] = self.num
+    def add_node(self, origin:int, symbol:str)->None:
+        """
+        @brief Função que adiciona um novo nó
+        @param origin: define a origem
+        @param symbol: indica a letra presente na posição
+        """
+        self.num += 1  #contador do número de nós
+        self.nodes[origin][symbol] = self.num  #vai buscar o valor associado ao símbolo e o respetivo nó
         self.nodes[self.num] = {}
     
     def add_pattern(self, p:str)-> None:
         """
-        Adiciona um padrão à Trie
-        Args:
-            p: padrão a ser adicionado
+        @brief Adiciona um padrão à Trie
+        @param p: padrão a ser adicionado
         """
 
         pos = 0    #inicialização da raiz da Trie
@@ -36,20 +46,17 @@ class Trie:
             
     def trie_from_patterns(self, pats: list[str])->None:
         """
-        Adiciona um conjunto de padrões à Trie
-        Args:
-            pats: lista de padrões a serem adicionados à Trie
+        @brief Adiciona um conjunto de padrões à Trie
+        @param pats: lista de padrões a serem adicionados à Trie
         """
         for p in pats:
             self.add_pattern(p) #adiciona cada padrão à Trie
             
     def prefix_trie_match(self, text:str)->None:
         """
-        Procura a ocorrência de um dos padrões como prefixo de uma sequência
-        Args:
-            text: texto para o qual vamos procurar o prefixo
-        Returns:
-            string correspondente ao maior padrão que é prefixo
+        @brief Procura a ocorrência de um dos padrões como prefixo de uma sequência
+        @param text: texto para o qual vamos procurar o prefixo
+        @return String correspondente ao maior padrão que é prefixo
         """
         pos = 0
         match = ""
@@ -70,11 +77,9 @@ class Trie:
 
     def trie_matches(self, text:str)->list[tuple[int,str]]:
         """
-        Procura padrões na sequência text
-        Args:
-            text: texto que vamos procurar o prefixo
-        Returns:
-            Lista de tuplos (posição inicial do padrão, padrão(str))
+        @brief Procura padrões na sequência text
+        @param text: texto que vamos procurar o prefixo
+        @return Lista de tuplos (posição inicial do padrão, padrão(str))
         """
         res = []
         for i in range(len(text)):

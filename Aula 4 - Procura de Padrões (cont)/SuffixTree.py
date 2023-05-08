@@ -2,28 +2,39 @@
 
 class SuffixTree:
     
-    def __init__(self):
+    def __init__(self)->None:
+        """
+        @brief Construtor da class SuffixTree
+        """
         self.nodes = { 0:(-1,{}) } # root node
         self.num = 0
     
-    def print_tree(self):
+    def print_tree(self)->None:
+        """
+        @brief Função que imprime a árvore de Trie
+        """
         for k in self.nodes.keys():
             if self.nodes[k][0] < 0:
                 print (k, "->", self.nodes[k][1]) 
             else:
                 print (k, ":", self.nodes[k][0])
                 
-    def add_node(self, origin, symbol, leafnum = -1):
+    def add_node(self, origin:int, symbol:str, leafnum:int = -1)->None:
+        """
+        @brief Função que adiciona um novo nó, se este ainda não existir na árvore
+        @param origin: origem do nó
+        @param symbol: letra do alfabeto correspondente
+        @param leafnum: número da folha, toma valor -1 caso não seja folha
+        """
         self.num += 1
         self.nodes[origin][1][symbol] = self.num
         self.nodes[self.num] = (leafnum,{})
         
     def add_suffix(self, p:str, sufnum:int)-> None:
         """
-        Adiciona o sufixo p à Trie e diz-nos qual é a posição no sufnum
-        Args:
-            p: sufixo a adicionar
-            sufnum: posição do sufixo na string original
+        @brief Adiciona o sufixo p à Trie e diz-nos qual é a posição no sufnum
+        @param p: sufixo a adicionar
+        @param sufnum: posição do sufixo na string original
         """
         pos = 0
         node = 0
@@ -39,27 +50,25 @@ class SuffixTree:
     
     def suffix_tree_from_seq(self, text:str)->None:
         """
-        Função que cria a árvore de sufixos e adiciona um sufixo em cada iteração, usando a anterior
-        Args:
-            text: texto que vamos procurar o sufixo
+        @brief Função que cria a árvore de sufixos e adiciona um sufixo em cada iteração, usando a anterior
+        @param text: texto que vamos procurar o sufixo
         """
-        t = text+"$"
+        t = text+"$" #adiciona o $ no final da seq
+        self.seq = t
         for i in range(len(t)):
             self.add_suffix(t[i:], i)
             
     def find_pattern(self, pattern)->list[str]:
         """
-        Função que procura padrões usando a Trie
-        Args:
-            pattern: padrão a procurar na Trie
-        Returns:
-            lista com os padrões encontrados
+        @brief Função que procura se existe um padrão na árvore
+        @param pattern: padrão a procurar na Trie
+        @return lista com os padrões encontrados
         """
         pos = 0
         node = 0
         for pos in range(len(pattern)):
-            if pattern[pos] in self.nodes[node][1].keys():
-                node = self.nodes[node][1][pattern[pos]]
+            if pattern[pos] in self.nodes[node][1].keys():  #se as letras estiverem no self.node na pos 0 nas keys
+                node = self.nodes[node][1][pattern[pos]]  #troca de node
         else:
             return None
         return self.get_leafes_below(node)
@@ -68,15 +77,13 @@ class SuffixTree:
 
     def get_leafes_below(self, node:int)->list[int]:
         """
-        Usa função auxiliar para colecionar todas as folhas abaixo de um dado nó
-        Args:
-            node: índice do nó onde começa a busca
-        Returns:
-            lista de inteiros
+        @brief Usa função auxiliar para colecionar todas as folhas abaixo de um dado nó
+        @param node: índice do nó onde começa a busca
+        @return lista de inteiros
         """
         res = []
-        if self.nodes[node][0] >=0: 
-            res.append(self.nodes[node][0])            
+        if self.nodes[node][0] >=0: #se o nó 0 não tem valor -1, significa que é uma folha
+            res.append(self.nodes[node][0])    #guarda a sua posição         
         else:
             for k in self.nodes[node][1].keys():
                 newnode = self.nodes[node][1][k]

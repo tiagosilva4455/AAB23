@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 class BWT:
+    """
+    Implementação da Transformação de Burrows-Wheeler"""
     
     def __init__(self, seq:str = "", buildsufarray:bool = False)->None:
         """

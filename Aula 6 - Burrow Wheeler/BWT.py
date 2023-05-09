@@ -75,7 +75,7 @@ class BWT:
             firstcol.sort()
         return firstcol
         
-    def last_to_first(self)->list:
+    def last_to_first(self)->list[int]:
         """
         @brief Retorna uma lista contendo os índices da última ocorrência de cada caractere da BWT na primeira coluna do quadro de sufixos
         @return Lista de índices correspondentes à última ocorrência de cada caractere na primeira coluna do quadro de sufixos
@@ -89,7 +89,7 @@ class BWT:
         return res
 
 
-    def bw_matching(self, patt:str)->list:
+    def bw_matching(self, patt:str)->list[int]:
         """
         @brief Retorna uma lista de índices correspondentes aos sufixos da BWT que possuem o padrão de busca especificado
         @param patt: O padrão de busca a ser procurado na BWT
@@ -116,7 +116,7 @@ class BWT:
                 flag = False            
         return res        
  
-    def bw_matching_pos(self, patt:str)-> list:
+    def bw_matching_pos(self, patt:str)-> list[int]:
         """
         @briefRealiza correspondência de padrões utilizando a BWT e retorna as posições dos sufixos correspondentes
         @param patt: O padrão a ser procurado na BWT
@@ -131,7 +131,7 @@ class BWT:
  
 # auxiliary
  
-def find_ith_occ(l, elem, index):
+def find_ith_occ(l:list[str], elem:str, index:int)->int:
     """
     @brief Retorna o índice da i-ésima ocorrência do elemento elem na lista l
     @param l: Lista de elementos a ser pesquisada

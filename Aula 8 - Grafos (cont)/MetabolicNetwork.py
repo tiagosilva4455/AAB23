@@ -3,6 +3,9 @@
 from MyGraph import MyGraph
 
 class MetabolicNetwork (MyGraph):
+    """
+    Implementação da class MetabolicNetwork, sub-classe da class MyGraph, que herda todos os seus atributos e métodos
+    """
     
     def __init__(self, network_type = "metabolite-reaction", split_rev = False):
         MyGraph.__init__(self, {})

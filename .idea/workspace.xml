@@ -5,13 +5,67 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4623ae4-b984-4308-baf0-0d13ad46aa15" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/AAB23.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/AAB23.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aula 2 - Motifs - Algoritmos Evolucionários/Popul.py" beforeDir="false" afterPath="$PROJECT_DIR$/Aula 2 - Motifs - Algoritmos Evolucionários/Popul.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aula 3 - Procura de Padrões em Sequências/Automata.py" beforeDir="false" afterPath="$PROJECT_DIR$/Aula 3 - Procura de Padrões em Sequências/Automata.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aula 6 - Burrow Wheeler/BWT_incomp.py" beforeDir="false" afterPath="$PROJECT_DIR$/Aula 6 - Burrow Wheeler/BWT_incomp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aula 7 - Grafos/MyGraph.py" beforeDir="false" afterPath="$PROJECT_DIR$/Aula 7 - Grafos/MyGraph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/MotifFinding.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/MyMotifs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/MySeq.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/doctrees/conf.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/doctrees/environment.pickle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/doctrees/index.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/doctrees/modules.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/.buildinfo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_sources/conf.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_sources/index.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_sources/modules.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/alabaster.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/basic.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/custom.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/doctools.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/documentation_options.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/file.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/jquery-3.5.1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/language_data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/minus.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/plus.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/pygments.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/searchtools.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/underscore-1.13.1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/underscore.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/conf.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/genindex.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/modules.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/objects.inv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/search.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/searchindex.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/conf.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/conf.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/index.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/make.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/docs/modules.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/exemploMotifs.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 1 - Motifs - Algoritmos Estocástico e Heurísticos/exemploMotifs2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 2 - Motifs - Algoritmos Evolucionários/EAMotifs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 2 - Motifs - Algoritmos Evolucionários/EvolAlgorithm.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 2 - Motifs - Algoritmos Evolucionários/Indiv.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 2 - Motifs - Algoritmos Evolucionários/MotifFinding.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 2 - Motifs - Algoritmos Evolucionários/MyMotifs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 2 - Motifs - Algoritmos Evolucionários/MySeq.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 2 - Motifs - Algoritmos Evolucionários/Popul.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 2 - Motifs - Algoritmos Evolucionários/exemploMotifs.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 2 - Motifs - Algoritmos Evolucionários/exemploMotifs2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 3 - Procura de Padrões em Sequências/Automata.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 3 - Procura de Padrões em Sequências/Automata_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 4 - Procura de Padrões (cont)/SuffixTree.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 4 - Procura de Padrões (cont)/Trie.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 5 - NGS - Sequenciação de DNA/.Rapp.history" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 5 - NGS - Sequenciação de DNA/.Rhistory" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 5 - NGS - Sequenciação de DNA/ex-rnaseq-mouse.R" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 6 - Burrow Wheeler/BWT.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 6 - Burrow Wheeler/aula-bwt.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aula 7 - Grafos/MyGraph.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,6 +145,9 @@
       <workItem from="1681895703040" duration="2297000" />
       <workItem from="1682499511986" duration="3000" />
       <workItem from="1683207146442" duration="629000" />
+      <workItem from="1683296384426" duration="1722000" />
+      <workItem from="1683627280355" duration="633000" />
+      <workItem from="1683739190817" duration="354000" />
     </task>
     <servers />
   </component>

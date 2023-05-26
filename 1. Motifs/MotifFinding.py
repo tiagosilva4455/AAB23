@@ -314,6 +314,113 @@ class MotifFinding:
             ind += 1
         return ind-1
 
+#EX com pseudo contagens
+
+    def scoreEX(self, m): #responsável por calcular a contagem com as pseudo contagens
+            score = 0
+            motif = self.createMotifFromIndexes(m)
+            motif.doCounts() #cria a matriz de contagens
+            mat = [] #lista vazia qeu vai servir como matriz depois
+            for i in range(len(motif.counts)): #vai correr as linhas da matriz com as counts
+                linha = []
+                for j in range(len(motif.counts[i])):
+                    linha.append(motif.counts[i][j] + 1) #não permite que haja 0 possibilitando as pseudo contagens
+                mat.append(linha)
+            for k in range(len(mat[0])): #vai correr as colunas da matriz
+                maxcol = mat[0][k] #vai dizer que o maxcolun vai ser igual ao primeiro elemento da coluna
+                for f in range(1, len(mat)): #vai começar no segundo elemento da coluna e vai comparar com todos os elementos da coluna para ver qual é o maior
+                    if mat[f][k] > maxcol:
+                        maxcol = mat[f][k]
+                score += maxcol #vai adionar esse valor a coluna
+            return score #vai dar o score da consenso
+
+    def probabSeqEX (self, seq, pwm): #vai calcular a probabilidade de a seq fazer parte deste quadro sendo que todos os elementos do quadro nao tem valores negativos
+        res = 1.0
+        for i in range(self.motifSize):
+            lin = self.alphabet.index(seq[i])
+            res *= pwm[lin][i] #damos a pwm e nao usamso o self.pwm por causa de termos substituido os 0
+        return res #da a probabilidade de cada seq ocorrer
+
+    def mostProbableSeqEX(self, seq, pwm): #vai ver qual a posição inicial da subseq de uma seq de comprimento indefenido encaixa melhor no quandro de motifs das seqs
+        maximo = -1.0
+        maxind = -1
+        for k in range(len(seq)-self.motifSize):
+            p = self.probabSeqEX(seq[k:k+ self.motifSize], pwm)
+            if(p > maximo):
+                maximo = p
+                maxind = k
+        return maxind
+
+    def probAllPositionsEX(self, seq, pwm): #este em vez de calcular a probabilidade de acontecer devolve uma lista com as probabilidades de acontecer em cada letra da seq
+        res = []
+        for k in range(len(seq)-self.motifSize+1):
+            res.append(self.probabSeqEX(seq, pwm))
+        return res
+
+    def heuristicStochastic_EX(self):
+        from random import randint
+        s = [0] * len(self.seqs) #gera um vetor aleatório com o mesmo tamanho do nº de seqs qeu existem
+        #passo 1
+        for i in range(len(self.seqs)): #indica todas as posições com valores aleatórios
+            s[i] = randint(0, self.seqSize(i) - self.motifSize) #como é random pode escolher um otimo local mas não a solução otima
+        #Passo 2
+        melhorscore = self.scoreEX(s) #vai fazer o score consoante o novo score2 que não vai conter valores 0 já com as pseudos contagens
+        improve = True
+        while improve:
+            motif = self.createMotifFromIndexes(s) #constroi o perfil com base nas posições iniciais s
+            motif.createPWM() #vai criar a matriz PWM
+            newPWM = [] #vai construir a matriz PWM sem nenhum numero negativo já com as pseudo contagens
+            for k in range(len(motif.pwm)):
+                linhas = []
+                for t in range(len(motif.pwm[0])):
+                    linhas.append(motif.pwm[k][t] + 0.1) #quando ao probabilidade seri a0 passa a ser 0.1
+                newPWM.append(linhas)
+            #Passo 3
+            for i in range(len(self.seqs)): #avalia a melhor posicao inicial para cada seq
+                s[i] = self.mostProbableSeqEX(self.seqs[i], newPWM) #vai ver em cada seq de self.seqs, qual é a subseq nelas que é mais provável de acontecer no quandro PWM
+            # passo 4
+            # verifica se houve melhoria
+            scr = self.scoreEX(s) #vai calcular o score
+            if scr > melhorscore: #se o score melhorou volta a repetir o processo se não acaba e devolve as melhores posições das subseqs
+                melhorscore = scr
+            else:
+                improve = False
+        return s
+
+    def gibbsEX (self, iterations = 1000):
+        # vai tentar aproximar da solução otima em vez dos otimos locais
+        from random import randint
+        s = [] #cria a lsiat s de posições iniciais
+        # passo 1 indica todas as posições com valores aleatórios(vetor inicializado de forma aleatória)
+        for i in range(len(self.seqs)):
+             s.append(randint(0, len(self.seqs[i]) - self.motifSize -1)) #escolher um numero random de start para cada sequência
+        melhorscore = self.scoreEX(s) #calcular o score de s
+        bests = list(s)
+        for it in range(iterations):
+            # passo 2: esolher uma das seqs aleatoriamente
+            seq_idx = randint(0, len(self.seqs) - 1) #retira uma seq aleatória
+            # passo 3: cria o perfil sem a seq escolhida aleatoriamente
+            seq = self.seqs[seq_idx]
+            s.pop(seq_idx)
+            removed = self.seqs.pop(seq_idx) #vai dar pop da seq na lista e guardar no removed
+            motif = self.createMotifFromIndexes(s) #Cria o perfil sem a sequência removida
+            motif.createPWM()
+            newPWM = [] #vai contruir a matriz PWM sem nenhum numero negativo já com as pseudo contagens
+            for k in range(len(motif.pwm)):
+                linhas = []
+                for t in range(len(motif.pwm[0])):
+                    linhas.append(motif.pwm[k][t] + 0.1) #substitiu as probabilidade de 0 por 0.1
+                newPWM.append(linhas)
+            self.seqs.insert(seq_idx, removed) #vai voltar a adicionar a seq removida a lista de seqs na posição seq_idx
+            r = self.probAllPositionsEX(seq, newPWM) #vai calcular a probabilidade de todas as subseqs possiveis na seq removida
+            pos = self.roulette(r) #vai fazer o roulette da lista e escolher um dos valores com valores maior que 0, devolvendo a posição onde se iniciou o motif
+            s.insert(seq_idx, pos) #vai adicionar o valor da pos do motif ao s na posição seq_idx
+            score = self.scoreEX(s) #vai calcular o score do novo s
+            if score > melhorscore: #vai ver se este é maior que o melhor scor se for, o melhorscore passa a ser o score e a bests passa a ser a s
+                melhorscore = score
+                bests = list(s)
+        return bests #vai dar return do s    
+
 # tests
 
 def test1():  
@@ -369,5 +476,7 @@ def test4():
     sol2 = mf.gibbs(1000)
     print ("Score:" , mf.score(sol2))
     print ("Score mult:" , mf.scoreMult(sol2))
+
+
 
 #test4()

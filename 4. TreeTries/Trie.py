@@ -86,22 +86,4 @@ class Trie:
             m = self.prefix_trie_match(text[i:])  #verifica se existe um padrão que começa nessa posição a partir da função prefix_match
             if m != None: res.append((i, m))   #se encontrar o padrão, add à lista res o tuplo com a posição e o padrão
         return res
-        
-          
-def test():
-    patterns = ["GAT", "CCT", "GAG"]
-    t = Trie()
-    t.trie_from_patterns(patterns)
-    t.print_trie()
 
-   
-def test2():
-    patterns = ["AGAGAT", "AGC", "AGTCC", "CAGAT", "CCTA", "GAGAT", "GAT", "TC"]
-    t = Trie()
-    t.trie_from_patterns(patterns)
-    print (t.prefix_trie_match("GAGATCCTA"))
-    print (t.trie_matches("GAGATCCTA"))
-    
-test()
-print()
-test2()

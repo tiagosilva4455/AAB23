@@ -68,7 +68,7 @@ class MyGraph:
          ''' 
         self.add_vertex(o)
         self.add_vertex(d)
-        self.graph[o].add(d)
+        self.graph[o].append(d)
 
     ## successors, predecessors, adjacent nodes
         
@@ -309,10 +309,10 @@ def test5():
     print (gr2. node_has_cycle(1))
     print (gr2.has_cycle())
 
+def test6():
+    g = MyGraph()
+    g.add_vertex(1)
+    print(g.graph)
 
 if __name__ == "__main__":
-    test1()
-    #test2()
-    #test3()
-    #test4()
-    #test5()
+    test6()

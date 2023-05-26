@@ -31,7 +31,7 @@ class BWT:
             ls.append(text[i:] + text[:i]) #cria uma lista com as rotações do texto
 
         ls.sort() #ordena-as
-        res = " "
+        res = ""
 
         for i in range(len(text)):
             res += ls[i][len(text) - 1] #constroi a transformada de BW juntando o último caracter de cada rotação circular
@@ -51,7 +51,7 @@ class BWT:
         """
         firstcol = self.get_first_col()
         res = ""
-        c = "$" #caractere inicial, de acordo com a especificação de BWT
+        c = "$" #caracter inicial, de acordo com a especificação de BWT
         occ = 1 # número de ocorrências do caractere inicial
         for i in range(len(self.bwt)):   #iteramos a partir da última coluna da BWT até obtermos toda a sequência original
             pos = find_ith_occ(self.bwt, c, occ)
@@ -146,29 +146,3 @@ def find_ith_occ(l:list[str], elem:str, index:int)->int:
             if k == index: return j
         j += 1
     return -1
-
-
-      
-def test():
-    seq = "TAGACAGAGA$"
-    bw = BWT(seq)
-    print (bw.bwt)
-#    print (bw.last_to_first())
-#    print (bw.bw_matching("AGA"))
-
-
-def test2():
-    bw = BWT("")
-    bw.set_bwt("ACG$GTAAAAC")
-    print (bw.inverse_bwt())
-
-def test3():
-    seq = "TAGACAGAGA$"
-    bw = BWT(seq, True)
-    print("Suffix array:", bw.sa)
-#    print(bw.bw_matching_pos("AGA"))
-
-test()
-#test2()
-#test3()
-

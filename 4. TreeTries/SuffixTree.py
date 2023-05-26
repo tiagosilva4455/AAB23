@@ -32,7 +32,7 @@ class SuffixTree:
         
     def add_suffix(self, p:str, sufnum:int)-> None:
         """
-        @brief Adiciona o sufixo p à Trie e diz-nos qual é a posição no sufnum
+        @brief Adiciona o sufixo à Trie e diz-nos qual é a posição no sufnum
         @param p: sufixo a adicionar
         @param sufnum: posição do sufixo na string original
         """
@@ -91,25 +91,24 @@ class SuffixTree:
                 res.extend(leafes)
         return res
 
-def test():
-    seq = "TACTA"
-    st = SuffixTree()
-    st.suffix_tree_from_seq(seq)
-    st.print_tree()
-    print (st.find_pattern("TA"))
-    print (st.find_pattern("ACG"))
+    def get_suffixes(self):
+        suffixes = []
+        for node in self.nodes.values():
+            if node[0] >= 0:
+                suffixes.append(node[0])
+            else:
+                for child in node[1].values():
+                    suffixes.extend(self.get_suffixes(child))
+        return suffixes
 
-def test2():
-    seq = "TACTA"
-    st = SuffixTree()
-    st.suffix_tree_from_seq(seq)
-    print(st.find_pattern("TA"))
-    #print(st.repeats(2,2))
 
-test()
-print()
-test2()
-        
+def test1():
+    tree = SuffixTree()
+    tree.add_suffix("abcabc", -1)
+    suffixes = tree.get_suffixes()
+    print(suffixes)
+
+test1()
             
     
     

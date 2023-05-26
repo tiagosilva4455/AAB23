@@ -16,10 +16,29 @@ class OverlapGraph(MyGraph):
     
     ## create overlap graph from list of sequences (fragments)
     def create_overlap_graph(self, frags):
-        # ...
+        for x in frags: #por sequencia em frag
+            self.add_vertex(x)  #cria vértice no grafo
+        for seq in frags:
+                sufixo = suffix(seq)  #verifica qual é o sufixo da seq, ou seja todas as letras exceto a primeira da seq
+                for seq2 in frags:
+                    if prefix(seq2) == sufixo: #se o prefixo, ou seja tudo menos a ultima letra, é igual ao sufixo
+                        self.add_edge(seq,seq2) #adiciona um edge que é um tuplo  (sufixo,prefixo)
+
         
     def create_overlap_graph_with_reps(self, frags):  # caso de replicas de fragmentos
-        # ...
+        idnum = 1
+        for seq in frags:
+            self.add_vertex(seq + '-' + str(idnum)) #vai adicionar o vértice com a sequencia + um identificador associado que começa em 1
+            idnum += 1
+        idnum = 1 #para adicionar os edges recomeçamos a contagem do idnum
+        for seq in frags:
+            sufixo = suffix(seq)
+            for seq2 in frags:
+                if prefix(seq2) == sufixo: #se o prefixo for igual ao sufixo
+                    for y in self.get_instances(seq2): #por cada y em get_instances
+                        self.add_edge(seq + '-' + str(idnum), y) #adicionar edges ao vértice, primeiro damos o vértice de origem (seq+'-'+str(idnum)) e depois
+                        #o de destino que vai ser o y que  cada elemento vindo da lista da função get_instances
+            idnum += 1
     
     def get_instances(self, seq):
         res = []

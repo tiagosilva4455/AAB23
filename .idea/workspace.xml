@@ -5,76 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4623ae4-b984-4308-baf0-0d13ad46aa15" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/1. Motifs/MotifFinding_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2. AlgoritmosEvol/AlgoritmoEvol_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/MotifFinding.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/MyMotifs.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/MySeq.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/doctrees/conf.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/doctrees/environment.pickle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/doctrees/index.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/doctrees/modules.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/.buildinfo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_sources/conf.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_sources/index.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_sources/modules.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/alabaster.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/basic.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/custom.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/doctools.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/documentation_options.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/file.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/jquery-3.5.1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/language_data.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/minus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/plus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/pygments.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/searchtools.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/underscore-1.13.1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/_static/underscore.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/conf.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/genindex.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/modules.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/objects.inv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/search.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/_build/html/searchindex.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/conf.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/conf.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/index.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/make.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/docs/modules.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/exemploMotifs.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1. Motifs - Algoritmos Estocástico e Heurísticos/exemploMotifs2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2. Algoritmos Evolucionários/EAMotifs.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2. Algoritmos Evolucionários/EvolAlgorithm.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2. Algoritmos Evolucionários/Indiv.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2. Algoritmos Evolucionários/MotifFinding.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2. Algoritmos Evolucionários/MyMotifs.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2. Algoritmos Evolucionários/MySeq.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2. Algoritmos Evolucionários/Popul.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2. Algoritmos Evolucionários/exemploMotifs.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2. Algoritmos Evolucionários/exemploMotifs2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/3. Automatas/Automata_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/3. Automatas/Automata_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/4. Tree e Tries/SuffixTree.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/4. Tree e Tries/Trie.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/5. BWT/BWT.py" beforeDir="false" afterPath="$PROJECT_DIR$/5. BWT/BWT.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/5. BWT/aula-bwt.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/6. Grafos/MyGraph.py" beforeDir="false" afterPath="$PROJECT_DIR$/6. Grafos/MyGraph.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/7. Grafos Redes Biológicas/MetabolicNetwork.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/7. Grafos Redes Biológicas/MyGraph.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/7. Grafos Redes Biológicas/__MACOSX/._MetabolicNetwork.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/7. Grafos Redes Biológicas/__MACOSX/._MyGraph.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/7. Grafos Redes Biológicas/__MACOSX/._ecoli.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/7. Grafos Redes Biológicas/__MACOSX/._example-net.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/7. Grafos Redes Biológicas/ecoli.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/7. Grafos Redes Biológicas/example-net.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/8. Grafos Sequênciação de Genomas/MyGraph.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/8. Grafos Sequênciação de Genomas/debruijn.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/8. Grafos Sequênciação de Genomas/overlap_graphs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/8. GrafosSeqGenoma/MyGraph.py" beforeDir="false" afterPath="$PROJECT_DIR$/8. GrafosSeqGenoma/MyGraph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/8. GrafosSeqGenoma/debruijn.py" beforeDir="false" afterPath="$PROJECT_DIR$/8. GrafosSeqGenoma/debruijn.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -254,6 +187,7 @@
       <workItem from="1684231468626" duration="1678000" />
       <workItem from="1684241842593" duration="604000" />
       <workItem from="1684312956065" duration="5409000" />
+      <workItem from="1685116594008" duration="10545000" />
     </task>
     <servers />
   </component>
@@ -270,6 +204,17 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/8. GrafosSeqGenoma/MyGraph.py</url>
+          <line>370</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AAB23$MyGraph.coverage" NAME="MyGraph Coverage Results" MODIFIED="1684162390746" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/6. Grafos" />

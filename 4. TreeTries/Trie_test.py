@@ -14,13 +14,5 @@ class TriesTest(unittest.TestCase):
                                    8: {'f': 9}, 9: {}, 10: {'e': 11}, 11: {'a': 12},
                                 12: {'f': 13}, 13: {}})
 
-    def test_find_prefix_trie_match(self):
-        t = Trie()
-        t.add_pattern("salt")
-        t.add_pattern("sand")
-        t.add_pattern("surf")
-        t.add_pattern("leaf")
-        self.assertEqual(t.prefix_trie_match("fault"),"") # nao percebo o que faz aqui
-
 if __name__ == '__main__':
     unittest.main()

@@ -701,6 +701,15 @@ def test6():
     print (gr.clustering_coef(1))
     print (gr.clustering_coef(2))
 
+
+def test7():
+    gr2 = MyGraph({1:[2,3,4], 2:[5,6],3:[6,8],4:[8],5:[7],6:[],7:[],8:[]})
+    print(gr2.is_connected())
+    gr3 = MyGraph({'A': ['B', 'C'],'B': ['A', 'D'],'C': ['A', 'D'],'D': ['B', 'C', 'E'],'E': ['D', 'F'],'F': ['E']})
+    print(gr3.is_connected())
+    
+    
+
 if __name__ == "__main__":
     print("Test 1:")
     test1()
@@ -719,6 +728,9 @@ if __name__ == "__main__":
     print()
     print("Test 6:")
     test6()
+    print()
+    print("Test 7:")
+    test7()
     print()
     print("DONE")
     

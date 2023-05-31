@@ -117,7 +117,7 @@ class MyGraph:
         @brief Calcula o grau de entrada do nó v
         @return grau de entrada do nó v
         """
-        return len(self.get_predecessors[v])
+        return len(self.get_predecessors(v))
 
     def degree(self, v: int) -> int:
         """
@@ -278,10 +278,10 @@ class MyGraph:
  
     ## mean distances ignoring unreachable nodes
     def mean_distances(self)-> float:
-    '''
-    @brief Calcula a distancia media entre todos os pares de nós do grafo
-    @return a distancia média e o nodo
-    '''
+        '''
+        @brief Calcula a distancia media entre todos os pares de nós do grafo
+        @return a distancia média e o nodo
+        '''
         tot = 0
         num_reachable = 0
         for k in self.graph.keys(): 
@@ -541,7 +541,28 @@ class MyGraph:
         edges_visit = list(self.get_edges())
         res = []
         while edges_visit:
-            pass  ## completar aqui
+            par=edges_visit[0]
+            i=1
+            if res != []:
+                while par[0] not in res:
+                    par = edges_visit[i]
+                    i += 1
+            edges_visit.remove(par)
+            inicio, prox = par
+            ciclo = [inicio, prox]
+            while prox != inicio:
+                for suce in self.graph[prox]:
+                    if (prox, suce) in edges_visit:
+                        par = (prox, suce)
+                        prox = suce
+                        ciclo.append(prox)
+                        edges_visit.remove(par)
+            if res == []:
+                res = ciclo
+            else:
+                pos = res.index(ciclo[0])
+                for i in range(len(ciclo)-1):
+                    res.insert(pos + i + 1, ciclo[i+1])
         return res                 
       
     def eulerian_path(self)->list[str]:
@@ -681,11 +702,23 @@ def test6():
     print (gr.clustering_coef(2))
 
 if __name__ == "__main__":
-    #test1()
-    #test2()
-    #test3()
+    print("Test 1:")
+    test1()
+    print()
+    print("Test 2:")
+    test2()
+    print()
+    print("Test 3:")
+    test3()
+    print()
+    print("Test 4:")
     test4()
-    #test5()
-    #test6()
-    
+    print()
+    print("Test 5:")
+    test5()
+    print()
+    print("Test 6:")
+    test6()
+    print()
+    print("DONE")
     

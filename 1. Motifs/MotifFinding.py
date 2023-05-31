@@ -425,7 +425,7 @@ class MotifFinding:
 
 def test1():  
     sm = MotifFinding()
-    sm.readFile("exemploMotifs.txt","dna")
+    sm.readFile("1. Motifs/exemploMotifs.txt","dna")
     sol = [25,20,2,55,59]
     sa = sm.score(sol)
     print(sa)
@@ -456,7 +456,7 @@ def test2():
 
 def test3():
     mf = MotifFinding()
-    mf.readFile("exemploMotifs.txt","dna")
+    mf.readFile("1. Motifs/exemploMotifs.txt","dna")
     print ("Branch and Bound:")
     sol = mf.branchAndBound()
     print ("Solution: " , sol)
@@ -465,7 +465,7 @@ def test3():
 
 def test4():
     mf = MotifFinding()
-    mf.readFile("exemploMotifs.txt","dna")
+    mf.readFile("1. Motifs/exemploMotifs.txt","dna")
     print("Heuristic stochastic")
     sol = mf.heuristicStochastic()
     print ("Solution: " , sol)
@@ -478,5 +478,16 @@ def test4():
     print ("Score mult:" , mf.scoreMult(sol2))
 
 
-
-#test4()
+if __name__ == "__main__":
+    print("Test 1:")
+    test1()
+    print()
+    print("Test 2:")
+    test2()
+    print()
+    print("Test 3:")
+    test3()
+    print()
+    print("Test 4:")
+    test4()
+    print("DONE")

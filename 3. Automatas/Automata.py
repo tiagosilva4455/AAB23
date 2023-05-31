@@ -90,7 +90,7 @@ def test():
     print (auto.applySeq("CACAACAA"))
     print (auto.occurencesPattern("CACAACAA"))
 
-test()
+#test()
 
 #States:  4
 #Alphabet:  AC

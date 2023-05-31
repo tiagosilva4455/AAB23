@@ -146,3 +146,37 @@ def find_ith_occ(l:list[str], elem:str, index:int)->int:
             if k == index: return j
         j += 1
     return -1
+
+#tests
+
+def test():
+    seq = "bioinformatics$"
+    bw = BWT(seq)
+    print (bw.bwt)
+    print (bw.last_to_first())
+    print (bw.bw_matching("AGA"))
+
+
+def test2():
+    bw = BWT("")
+    bw.set_bwt("ACG$GTAAAAC")
+    print (bw.inverse_bwt())
+
+def test3():
+    seq = "TAGACAGAGA$"
+    bw = BWT(seq, True)
+    print("Suffix array:", bw.sa)
+    print(bw.bw_matching_pos("AGA"))
+
+if __name__ == "__main__":
+    print("Test 1:")
+    test()
+    print()
+    print("Test 2:")
+    test2()
+    print()
+    print("Test 3:")
+    test3()
+    print()
+    print("DONE")
+    

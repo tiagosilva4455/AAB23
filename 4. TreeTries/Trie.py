@@ -87,3 +87,27 @@ class Trie:
             if m != None: res.append((i, m))   #se encontrar o padrão, add à lista res o tuplo com a posição e o padrão
         return res
 
+#tests
+def test():
+    patterns = ["GAT", "CCT", "GAG"]
+    t = Trie()
+    t.trie_from_patterns(patterns)
+    t.print_trie()
+
+   
+def test2():
+    patterns = ["AGAGAT", "AGC", "AGTCC", "CAGAT", "CCTA", "GAGAT", "GAT", "TC"]
+    t = Trie()
+    t.trie_from_patterns(patterns)
+    print (t.prefix_trie_match("GAGATCCTA"))
+    print (t.trie_matches("GAGATCCTA"))
+    
+if __name__ == "__main__":
+    print("Test 1:")
+    test()
+    print()
+    print("Test 2:")
+    test2()
+    print()
+    print("DONE")
+    

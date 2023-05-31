@@ -169,7 +169,7 @@ def test1():
 def test2():
     print("metabolite-reaction network:")
     mrn = MetabolicNetwork("metabolite-reaction")
-    mrn.load_from_file("example-net.txt")
+    mrn.load_from_file("6. Grafos/example-net.txt")
     mrn.print_graph()
     print("Reactions: ", mrn.get_nodes_type("reaction") )
     print("Metabolites: ", mrn.get_nodes_type("metabolite") )
@@ -177,31 +177,35 @@ def test2():
     
     print("metabolite-metabolite network:")
     mmn = MetabolicNetwork("metabolite-metabolite")
-    mmn.load_from_file("example-net.txt")
+    mmn.load_from_file("6. Grafos/example-net.txt")
     mmn.print_graph()
     print()
     
     print("reaction-reaction network:")
     rrn = MetabolicNetwork("reaction-reaction")
-    rrn.load_from_file("example-net.txt")
+    rrn.load_from_file("6. Grafos/example-net.txt")
     rrn.print_graph()
     print()
     
     print("metabolite-reaction network (splitting reversible):")
     mrsn = MetabolicNetwork("metabolite-reaction", True)
-    mrsn.load_from_file("example-net.txt")
+    mrsn.load_from_file("6. Grafos/example-net.txt")
     mrsn.print_graph()
     print()
     
     print("reaction-reaction network (splitting reversible):")
     rrsn = MetabolicNetwork("reaction-reaction", True)
-    rrsn.load_from_file("example-net.txt")
+    rrsn.load_from_file("6. Grafos/example-net.txt")
     rrsn.print_graph()
     print()
 
   
 
-test1()
-print()
-test2()
-
+if __name__ == "__main__":
+    print("Test 1:")
+    test1()
+    print()
+    print("Test 2:")
+    test2()
+    print()
+    print("DONE")

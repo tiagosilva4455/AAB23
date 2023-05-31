@@ -42,11 +42,11 @@ class DeBruijnGraph (MyGraph):
         @param frags: Fragmentos do genoma
         '''
         for sequence in frags:
-            suffix = suffix(sequence)
-            self.add_vertex(suffix)
-            prefix = prefix(sequence)
-            self.add_vertex(prefix)
-            self.add_edge(prefix,suffix)
+            suf = suffix(sequence)
+            self.add_vertex(suf)
+            pre = prefix(sequence)
+            self.add_vertex(pre)
+            self.add_edge(pre,suf)
 
     def seq_from_path(self, path:list[str])->str:
         '''
@@ -98,23 +98,33 @@ def test1():
     
     
 def test2():
-frags = [ "ATA", "ACC", "ATG", "ATT", "CAT", "CAT", "CAT", "CCA", "GCA", "GGC", "TAA", "TCA", "TGG", "TTC", "TTT"]
-dbgr = DeBruijnGraph(frags)
-dbgr.print_graph()
-print (dbgr.check_nearly_balanced_graph())
-print (dbgr.eulerian_path())
+    frags = [ "ATA", "ACC", "ATG", "ATT", "CAT", "CAT", "CAT", "CCA", "GCA", "GGC", "TAA", "TCA", "TGG", "TTC", "TTT"]
+    dbgr = DeBruijnGraph(frags)
+    dbgr.print_graph()
+    print (dbgr.check_nearly_balanced_graph())
+    print (dbgr.eulerian_path())
 
 
 def test3():
     orig_sequence = "ATGCAATGGTCTG"
     frags = composition(3, orig_sequence)
-    # ... completar
+    dbgr = DeBruijnGraph(frags)
+    dbgr.print_graph()
+    print(dbgr.check_nearly_balanced_graph())
+    e = dbgr.eulerian_path()
+    print(e)
+    print(dbgr.seq_from_path(e))
 
 
 
-test1()
-print()
-#test2()
-#print()
-#test3()
-    
+if __name__ == "__main__":
+    print("Test 1:")
+    test1()
+    print()
+    print("Test 2:")
+    test2()
+    print()
+    print("Test 3:")
+    test3()
+    print()
+    print("DONE")

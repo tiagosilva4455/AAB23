@@ -58,7 +58,3 @@ class WeightedGraph(MyGraph):
                     predecessors[destination] = node
                     queue.append((destination, new_dist))
         return []
-    
-    
-if __name__ == "__main__":
-    test6()

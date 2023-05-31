@@ -14,7 +14,5 @@ class test_OverlapGraph(unittest.TestCase):
         y = True
         self.assertEqual(x, y)
 
-
-
 if __name__ == "__main__":
     unittest.main()
